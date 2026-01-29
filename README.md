@@ -39,3 +39,11 @@ uvicorn ais.main:app --reload
 ```
 
 8. Откройте http://127.0.0.1:8000/ в браузере.
+
+Примеры:
+
+![main.png](images/main.png)
+
+История:
+
+![main.png](images/history.png)
