@@ -46,4 +46,8 @@ uvicorn ais.main:app --reload
 
 История:
 
-![main.png](images/history.png)
+![history.png](images/history.png)
+
+Отчёт:
+
+![report.png](images/report.png)

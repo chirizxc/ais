@@ -31,22 +31,31 @@ pool = SQLiteConnectionPool(
 )
 
 
-async def add(cows: int, image_path: str) -> None:
+async def add(cows: int, original_path: str, annotated_path: str) -> int:
     async with pool.connection() as conn:
-        await conn.execute(
-            "INSERT INTO history (cows, image_path) VALUES (?, ?)",
-            (cows, image_path),
+        cur = await conn.execute(
+            "INSERT INTO history (cows, original_path, annotated_path) VALUES (?, ?, ?)",
+            (cows, original_path, annotated_path),
         )
         await conn.commit()
+        return int(cur.lastrowid)
+
+
+async def get_one(record_id: int) -> tuple | None:
+    async with pool.connection() as conn:
+        cur = await conn.execute(
+            "SELECT id, cows, original_path, annotated_path, timestamp "
+            "FROM history WHERE id = ?",
+            (record_id,),
+        )
+        return await cur.fetchone()
 
 
 async def get_history(limit: int = 100) -> list:
     async with pool.connection() as conn:
         cur = await conn.execute(
-            "SELECT id, cows, image_path, timestamp "
-            "FROM history "
-            "ORDER BY timestamp "
-            "DESC LIMIT ?",
+            "SELECT id, cows, original_path, annotated_path, timestamp "
+            "FROM history ORDER BY timestamp DESC LIMIT ?",
             (limit,),
         )
         return await cur.fetchall()

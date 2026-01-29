@@ -16,6 +16,7 @@ ignore = [
     "ARG",
     "BLE001",
     "CPY001",
+    "TC006",
 ]
 
 [lint.per-file-ignores]
