@@ -1,0 +1,31 @@
+target-version = "py313"
+
+line-length = 90
+indent-width = 4
+
+include = [
+    "src/**.py",
+    "scripts/**.py",
+]
+
+[lint]
+preview = true
+select = ["ALL"]
+ignore = [
+    "D",
+    "ARG",
+    "BLE001",
+    "CPY001",
+]
+
+[lint.per-file-ignores]
+"scripts/init_db.py" = [
+    "T201",
+    "INP001",
+]
+
+
+[lint.isort]
+force-wrap-aliases = true
+combine-as-imports = true
+no-lines-before = ["local-folder"]

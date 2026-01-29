@@ -1,0 +1,5 @@
+[db]
+path = "db.sqlite3"
+
+[yolo]
+path = "models/yolov8x.pt"

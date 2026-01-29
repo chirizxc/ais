@@ -1,0 +1,6 @@
+.venv/
+venv/
+static/
+models/*.pt
+db.sqlite3
+.config/config.toml
